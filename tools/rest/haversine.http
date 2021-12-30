@@ -1,0 +1,21 @@
+
+## NB : this uses the REST API Vs Code extension and supposes dotenv variable are set in the .env file :)
+
+# @name haversine
+POST {{$dotenv HOST}}/haversine
+Content-Type: application/json
+
+{
+  "start":{"long": 0, "lat": 0},
+  "end":{"long": 45, "lat": 0}
+}
+
+###
+
+# @name hello
+POST {{$dotenv HOST}}/hello
+Content-Type: application/json
+
+{
+  "name":"Bob"
+}

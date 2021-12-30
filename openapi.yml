@@ -1,0 +1,63 @@
+openapi: 3.0.0
+components:
+  schemas:
+    HaversineRequest:
+      type: object
+      properties:
+        start:
+          type: object
+          properties:
+            long:
+              type: number
+            lat:
+              type: number
+        end:
+          type: object
+          properties:
+            long:
+              type: number
+            lat:
+              type: number
+      required:
+        - start
+        - end
+    HaversineResonse:
+      type: object
+      properties:
+        distance:
+          type: number
+      required:
+        - distance
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+  securitySchemes: {}
+info:
+  title: CO2 Api
+  description: CO2 calculations API
+  version: '1'
+servers: []
+paths:
+  /haversine:
+    post:
+      operationId: haversine
+      summary: 'Calculate distance between 2 GPS points with haversine '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HaversineRequest'
+        description: Two pairs of GPS coordinates
+      parameters: []
+      responses:
+        '201':
+          description: Status 201 Response
+          content: {}
+        '500':
+          description: Status 500 Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
